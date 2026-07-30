@@ -1,114 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Upload Past Paper | Student Past Paper Management System</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+
+
+  
 </head>
+
+
 <body>
 
-  <div class="app-layout">
-
-    <!-- ---------------- SIDEBAR NAVIGATION ---------------- -->
-    <aside class="sidebar">
-      <div class="brand">
-        <div class="logo-placeholder">LOGO</div>
-        <span>Campus<br />Portal</span>
-      </div>
-
-      <nav>
-        <ul>
-          <li><a href="dashboard.html">🏠 Dashboard</a></li>
-          <li><a href="pastpapers.html">📄 Past Papers</a></li>
-          <li><a href="upload.html" class="active">⬆️ Upload Paper</a></li>
-        </ul>
-      </nav>
-
-      <div class="logout">
-        <a href="index.html">🚪 Logout</a>
-      </div>
-    </aside>
-
-    <!-- ---------------- MAIN CONTENT ---------------- -->
-    <main class="main-content">
-
-      <div class="topbar">
-        <h1>Upload Past Paper</h1>
-        <div class="user-chip">
-          <div class="avatar">SM</div>
-          <span>Sanduni Madushika</span>
-        </div>
-      </div>
-
-      <div class="upload-card">
-
-        <!-- 
-          UPLOAD FORM
-          id="uploadForm" lets script.js listen for the "submit" event,
-          stop the page from reloading, and show the success message instead.
-          This is a front-end demo only — no file is actually saved anywhere.
-        -->
-        <form id="uploadForm">
-
-          <!-- Subject name field -->
-          <div class="form-group">
-            <label for="subjectName">Subject Name</label>
-            <input
-              type="text"
-              id="subjectName"
-              name="subjectName"
-              placeholder="e.g. Physics"
-              required
-            />
-          </div>
-
-          <!-- Year field -->
-          <div class="form-group">
-            <label for="paperYear">Year</label>
-            <input
-              type="number"
-              id="paperYear"
-              name="paperYear"
-              placeholder="e.g. 2024"
-              min="2000"
-              max="2100"
-              required
-            />
-          </div>
-
-          <!-- File upload field -->
-          <div class="form-group">
-            <label for="paperFile">Upload File (PDF)</label>
-            <input
-              type="file"
-              id="paperFile"
-              name="paperFile"
-              accept=".pdf"
-              required
-            />
-          </div>
-
-          <button type="submit" class="btn-primary">Upload Paper</button>
-        </form>
-
-        <!-- 
-          SUCCESS NOTIFICATION AREA
-          Hidden by default (see .success-message in style.css).
-          script.js sets its display to "flex" after a successful submit.
-        -->
-        <div class="success-message" id="successMessage">
-          ✅ <span>Your past paper was uploaded successfully!</span>
-        </div>
-
-      </div>
-
-    </main>
-  </div>
-
-  <script src="script.js"></script>
+  
 </body>
+
 </html>
