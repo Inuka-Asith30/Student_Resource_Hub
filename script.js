@@ -2,6 +2,7 @@
 document.addEventListener('DOMContentLoaded', function () {
   initAnimations();
   initNotesSearch();
+  initLoginValidation();
 });
 
 
@@ -192,6 +193,62 @@ function injectAnimationStyles() {
   document.head.appendChild(style);
 }
 
+
+function initLoginValidation() {
+  const form = document.querySelector('.login-card form');
+  if (!form) return;
+
+  const emailInput = form.querySelector('#email');
+  const passwordInput = form.querySelector('#password');
+  if (!emailInput || !passwordInput) return;
+
+  const emailError = createErrorElement(emailInput);
+  const passwordError = createErrorElement(passwordInput);
+
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  function validateEmail() {
+    const value = emailInput.value.trim();
+    if (value === '') {
+      showError(emailInput, emailError, 'Student email is required.');
+      return false;
+    }
+    if (!emailPattern.test(value)) {
+      showError(emailInput, emailError, 'Please enter a valid email address.');
+      return false;
+    }
+    clearError(emailInput, emailError);
+    return true;
+  }
+
+  function validatePassword() {
+    const value = passwordInput.value;
+    if (value === '') {
+      showError(passwordInput, passwordError, 'Password is required.');
+      return false;
+    }
+    if (value.length < 6) {
+      showError(passwordInput, passwordError, 'Password must be at least 6 characters.');
+      return false;
+    }
+    clearError(passwordInput, passwordError);
+    return true;
+  }
+
+  emailInput.addEventListener('input', validateEmail);
+  emailInput.addEventListener('blur', validateEmail);
+  passwordInput.addEventListener('input', validatePassword);
+  passwordInput.addEventListener('blur', validatePassword);
+
+  form.addEventListener('submit', function (e) {
+    const isEmailValid = validateEmail();
+    const isPasswordValid = validatePassword();
+
+    if (!isEmailValid || !isPasswordValid) {
+      e.preventDefault(); 
+    }
+  });
+}
 
 
 
