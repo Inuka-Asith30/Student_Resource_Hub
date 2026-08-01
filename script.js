@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
   initAnimations();
   initNotesSearch();
   initLoginValidation();
+  initUploadValidation();
 });
 
 
@@ -248,6 +249,144 @@ function initLoginValidation() {
       e.preventDefault(); 
     }
   });
+}
+
+
+function initUploadValidation() {
+  const form = document.getElementById('uploadForm');
+  if (!form) return;
+
+  const subjectInput = document.getElementById('subjectName');
+  const yearInput = document.getElementById('NoteYear');
+  const fileInput = document.getElementById('NoteFile');
+  const successMessage = document.getElementById('successMessage');
+
+  if (!subjectInput || !yearInput || !fileInput) return;
+
+  const subjectError = createErrorElement(subjectInput);
+  const yearError = createErrorElement(yearInput);
+  const fileError = createErrorElement(fileInput);
+
+  const MAX_FILE_SIZE_MB = 10;
+
+  function validateSubject() {
+    const value = subjectInput.value.trim();
+    if (value === '') {
+      showError(subjectInput, subjectError, 'Subject name is required.');
+      return false;
+    }
+    if (value.length < 2) {
+      showError(subjectInput, subjectError, 'Subject name is too short.');
+      return false;
+    }
+    clearError(subjectInput, subjectError);
+    return true;
+  }
+
+  function validateYear() {
+    const value = yearInput.value.trim();
+    const currentYear = new Date().getFullYear();
+
+    if (value === '') {
+      showError(yearInput, yearError, 'Year is required.');
+      return false;
+    }
+    const numericYear = Number(value);
+    if (!Number.isInteger(numericYear) || numericYear < 2000 || numericYear > currentYear) {
+      showError(yearInput, yearError, 'Enter a valid year between 2000 and ' + currentYear + '.');
+      return false;
+    }
+    clearError(yearInput, yearError);
+    return true;
+  }
+
+  function validateFile() {
+    const files = fileInput.files;
+    if (!files || files.length === 0) {
+      showError(fileInput, fileError, 'Please choose a PDF file to upload.');
+      return false;
+    }
+    const file = files[0];
+    const isPdf = file.type === 'application/pdf' || file.name.toLowerCase().endsWith('.pdf');
+    if (!isPdf) {
+      showError(fileInput, fileError, 'Only PDF files are allowed.');
+      return false;
+    }
+    const sizeMb = file.size / (1024 * 1024);
+    if (sizeMb > MAX_FILE_SIZE_MB) {
+      showError(fileInput, fileError, 'File must be smaller than ' + MAX_FILE_SIZE_MB + 'MB.');
+      return false;
+    }
+    clearError(fileInput, fileError);
+    return true;
+  }
+
+
+  subjectInput.addEventListener('input', validateSubject);
+  yearInput.addEventListener('input', validateYear);
+  fileInput.addEventListener('change', validateFile);
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault(); 
+
+    const isSubjectValid = validateSubject();
+    const isYearValid = validateYear();
+    const isFileValid = validateFile();
+
+    if (isSubjectValid && isYearValid && isFileValid) {
+      if (successMessage) {
+        successMessage.style.display = 'flex';
+      }
+      form.reset();
+      
+      [subjectInput, yearInput, fileInput].forEach(function (input) {
+        input.classList.remove('input-error');
+      });
+    } else if (successMessage) {
+      successMessage.style.display = 'none';
+    }
+  });
+}
+
+
+
+function createErrorElement(input) {
+  const error = document.createElement('span');
+  error.className = 'field-error';
+  input.insertAdjacentElement('afterend', error);
+  ensureValidationStylesInjected();
+  return error;
+}
+
+function showError(input, errorEl, message) {
+  input.classList.add('input-error');
+  errorEl.textContent = message;
+}
+
+function clearError(input, errorEl) {
+  input.classList.remove('input-error');
+  errorEl.textContent = '';
+}
+
+function ensureValidationStylesInjected() {
+  if (document.getElementById('validationStyles')) return;
+
+  const style = document.createElement('style');
+  style.id = 'validationStyles';
+  style.textContent = `
+    .field-error {
+      display: block;
+      min-height: 16px;
+      font-size: 12px;
+      color: #dc2626;
+      margin-top: 4px;
+    }
+    .input-error {
+      border-color: #dc2626 !important;
+      box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.12) !important;
+    }
+  `;
+  document.head.appendChild(style);
 }
 
 
