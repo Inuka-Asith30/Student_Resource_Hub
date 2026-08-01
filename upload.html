@@ -17,7 +17,7 @@
 
   <div class="app-layout">
 
-    <!-- ---------------- SIDEBAR (Bootstrap navbar, vertical) ---------------- -->
+    
     <nav class="navbar navbar-dark sidebar flex-column">
       <a class="navbar-brand d-flex align-items-center gap-2" href="dashboard.html">
         <span class="logo-placeholder logo-placeholder-nav">LOGO</span>
@@ -25,13 +25,13 @@
       </a>
 
       <ul class="navbar-nav flex-column w-100">
-        <li class="nav-item"><a class="nav-link" href="dashboard.html">🏠 Dashboard</a></li>
-        <li class="nav-item"><a class="nav-link" href="pastpapers.html">📄 Notes</a></li>
-        <li class="nav-item"><a class="nav-link active" aria-current="page" href="upload.html">⬆️ Upload Notes</a></li>
+        <li class="nav-item"><a class="nav-link" href="dashboard.html"> Dashboard</a></li>
+        <li class="nav-item"><a class="nav-link" href="pastpapers.html"> Notes</a></li>
+        <li class="nav-item"><a class="nav-link active" aria-current="page" href="upload.html"> Upload Notes</a></li>
       </ul>
 
       <div class="sidebar-logout">
-        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#logoutModal">🚪 Logout</a>
+        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#logoutModal"> Logout</a>
       </div>
     </nav>
 
@@ -48,13 +48,7 @@
 
       <div class="card upload-card border-0">
 
-        <!--
-          UPLOAD FORM
-          id="uploadForm" lets script.js listen for the "submit" event,
-          stop the page from reloading, validate the fields, and show a
-          Bootstrap success modal instead of actually saving a file
-          anywhere — this is a front-end demo only.
-        -->
+        
         <form id="uploadForm" novalidate>
 
           <!-- Subject name field -->
@@ -70,8 +64,7 @@
             />
           </div>
 
-          <!-- Year field -->
-          <div class="form-group">
+                    <div class="form-group">
             <label for="NoteYear" class="form-label">Year</label>
             <input
               type="number"
@@ -85,8 +78,7 @@
             />
           </div>
 
-          <!-- File upload field -->
-          <div class="form-group">
+                   <div class="form-group">
             <label for="NoteFile" class="form-label">Upload File (PDF)</label>
             <input
               type="file"
@@ -106,16 +98,12 @@
     </main>
   </div>
 
-  <!-- ======================================================
-       BOOTSTRAP MODAL: Upload success
-       Shown by script.js after the form passes validation
-       (replaces the old inline success message box).
-  ======================================================= -->
+ 
   <div class="modal fade" id="uploadSuccessModal" tabindex="-1" aria-labelledby="uploadSuccessLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-body text-center py-4">
-          <div class="display-6 mb-2">✅</div>
+          <div class="display-6 mb-2"></div>
           <h5 class="mb-1" id="uploadSuccessLabel">Upload Successful</h5>
           <p class="text-muted mb-0">Your Note was uploaded successfully!</p>
         </div>
@@ -126,9 +114,7 @@
     </div>
   </div>
 
-  <!-- ======================================================
-       BOOTSTRAP MODAL: Logout confirmation
-  ======================================================= -->
+  
   <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
@@ -141,13 +127,13 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-          <a href="index.html" class="btn btn-danger">🚪 Logout</a>
+          <a href="index.html" class="btn btn-danger"> Logout</a>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Bootstrap JS bundle (includes Popper, needed for modal) -->
+ 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="script.js"></script>
 </body>
