@@ -1,0 +1,34 @@
+🎓 Campus Portal — Student Notes Management System
+
+A responsive, front-end-only web app for browsing, searching, and sharing student notes/past papers. Built with plain HTML, CSS, and JavaScript — no frameworks, no backend, no build step.
+
+This is a static UI demo/prototype. There is no real authentication or database — the login form simply redirects to the dashboard, and file "uploads" are simulated in the browser.
+
+✨ Features
+Login page with a centred card, gradient background, and email/password fields
+Dashboard with quick stats, a welcome banner, an auto-rotating image slider, and quick-action shortcuts
+Notes page with a searchable grid of subject cards (Physics, Maths, Chemistry, etc.)
+Upload page with a validated form for adding new notes
+Fully responsive layout (sidebar collapses to a top bar on tablets/phones)
+Shared Poppins typography and a consistent blue colour system via CSS variables
+JavaScript functionality (script.js)
+#	Feature	Where it lives
+1	Dynamic Content Updates — live filtering of the notes grid as you type, with a "no results" state	pastpapers.html
+2	Interactive Image Slider — auto-rotating + manual prev/next/dot navigation, pauses on hover	dashboard.html
+3	Form Validation — real-time email/password checks on login, and subject/year/PDF checks on upload	index.html, upload.html
+4	Custom Animations — staggered fade/slide-in on page load, scroll-triggered reveals, button pulse feedback, shake animation on invalid fields	All pages
+
+All animations and slider/validation styles are injected by script.js itself, so style.css doesn't need to be touched to make them work.
+
+
+🛠️ Tech Stack
+HTML5 — semantic page structure
+CSS3 — custom properties (CSS variables), Flexbox, Grid, media queries
+Vanilla JavaScript (ES6) — no libraries or frameworks
+Google Fonts — Poppins
+🎨 Design System
+
+
+🙋 Project Members
+D.I.A.A Wijesekara
+
