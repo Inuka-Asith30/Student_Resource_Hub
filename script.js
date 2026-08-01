@@ -252,6 +252,8 @@ function initLoginValidation() {
 }
 
 
+
+
 function initUploadValidation() {
   const form = document.getElementById('uploadForm');
   if (!form) return;
@@ -387,6 +389,8 @@ function ensureValidationStylesInjected() {
     }
   `;
   document.head.appendChild(style);
+
+
 }
 
 
